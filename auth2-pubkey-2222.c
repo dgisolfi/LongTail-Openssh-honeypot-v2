@@ -128,8 +128,8 @@ userauth_pubkey(Authctxt *authctxt)
 	}
 	fp = sshkey_fingerprint(key, options.fingerprint_hash, SSH_FP_DEFAULT);
 	//Added by John Walsh
-	logit("KeyLog: Username %s Key: %s", authctxt->user, fp);
-	logit("IP: %s Key2222Log: Username: %s Key: %s", get_remote_ipaddr(), authctxt->user, fp);
+	//logit("KeyLog: Username %s Key: %s", authctxt->user, fp);
+	logit("IP: %s Key2222Log: Username: %s Password: %s", get_remote_ipaddr(), authctxt->user, fp);
 
 	if (auth2_userkey_already_used(authctxt, key)) {
 		logit("refusing previously-used %s key", key_type(key));

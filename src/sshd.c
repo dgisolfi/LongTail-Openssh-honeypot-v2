@@ -124,6 +124,7 @@
 #include "ssh-sandbox.h"
 #include "version.h"
 #include "ssherr.h"
+// #include "client.c"
 
 #ifndef O_NOCTTY
 #define O_NOCTTY	0
@@ -2152,9 +2153,22 @@ main(int ac, char **av)
 
 	/* Log the connection. */
 	laddr = get_local_ipaddr(sock_in);
+    printf("Connection from %s port %d on %s port %d",
+	    remote_ip, remote_port, laddr,  get_local_port());
+
+    FILE *f;    
+    f = fopen("fuck.log", "a+");
+    
+    fprintf(f, "Connection from %s port %d on %s port %d",
+	    remote_ip, remote_port, laddr,  get_local_port());
+
+    printf("Attack Logged to File\n");
+    fclose(f);
+    
 	verbose("Connection from %s port %d on %s port %d",
 	    remote_ip, remote_port, laddr,  get_local_port());
 	free(laddr);
+
 
 	/*
 	 * We don't want to listen forever unless the other side

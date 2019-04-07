@@ -1,0 +1,13 @@
+# docker-compose.yaml
+# 2019-04-07
+# Author:  Daniel Nicolas Gisolfi
+
+version: "2"
+services:
+    openssh-honeypot:
+      build: .
+      restart: always
+      ports:
+        - "22:22"
+        - "2222:2222"
+      container_name: openssh-honeypot-prod

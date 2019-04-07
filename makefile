@@ -1,4 +1,5 @@
-# Daniel Gisolfi
+# OpenSSH Honeypot
+# Author:  Daniel Nicolas Gisolfi
 
 USER=dgisolfi
 IMAGE=ssh_honeypot

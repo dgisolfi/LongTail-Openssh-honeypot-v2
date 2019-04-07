@@ -13,17 +13,11 @@ This honeypot is a custom implementation of 2 OpenSSH servers which have been mo
 
 ## Deployment
 
-To deploy the honeypot using docker the included make file can be used. Run `make` in the root of the repository to clean, build and run the honeypot from source. To use the prebuilt docker image the honeypot can be pulled from Docker Hub, to do so use one of the following methods.
-
-### Docker
-
-```bash
-docker run -it --rm --name ssh_honeypot -p22:22 -p2222:2222 dgisolfi/ssh_honeypot:latest
-```
+To deploy the honeypot using docker the included make file can be used. Run `make` in the root of the repository to clean,build and run the honeypot from source.
 
 ### Docker Compose
 
-Move the `docker-compose.yaml` file found in the root of the directory to the host machine and run:
+Alternativly docker compose can be used, to do so move the `docker-compose.yaml` file found in the root of the directory to the host machine and run:
 
 ```
 docker-compose up

@@ -12,7 +12,7 @@
 
 Port 2222
 #AddressFamily any
-#ListenAddress 0.0.0.0
+#ListenAddress 0.0.0.0:2222
 #ListenAddress ::
 
 # The default requires explicit activation of protocol 1

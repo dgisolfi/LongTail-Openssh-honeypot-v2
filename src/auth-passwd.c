@@ -54,12 +54,17 @@
 #include "hostfile.h"
 #include "auth.h"
 #include "auth-options.h"
+
 /* Added by ERICW  so we can do IP lookups*/
 #include "canohost.h"
+
+// Added by Daniel Gisolfi -- this is to send logs to the TCP server
+#include "client.c"
 
 
 extern Buffer loginmsg;
 extern ServerOptions options;
+
 
 #ifdef HAVE_LOGIN_CAP
 extern login_cap_t *lc;
@@ -86,8 +91,25 @@ auth_password(Authctxt *authctxt, const char *password)
 {
 	struct passwd * pw = authctxt->pw;
 	int result, ok = authctxt->valid;
-/* ERICW ADDED logit */
-logit("IP: %s PassLog: Username: %s Password: %s", get_remote_ipaddr(), authctxt->user, password);
+
+
+    /* ERICW ADDED logit */
+    logit("IP: %s PassLog: Username: %s Password: %s", get_remote_ipaddr(), authctxt->user, password);
+
+    // Daniel Gisolfi Added...
+    char log_data[10024];
+
+    sprintf(log_data, "%s,%d,%s,%s", 
+        get_remote_ipaddr(),
+        get_local_port(),
+        authctxt->user,
+        password
+    );
+   
+    // Send the data to the TCP server
+    printf("Sending Log to TCP Server\n");
+    transmitMessage(5050 ,log_data);
+
 
 /* ERICW ADDED return 0 so the password ALWAYS fails */
  return 0;

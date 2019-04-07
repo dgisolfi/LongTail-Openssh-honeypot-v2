@@ -3,7 +3,6 @@
 import sys
 import socket
 import datetime
-from SendToQueue import *
 
 class Server:
     def __init__(self, port):

@@ -89,12 +89,12 @@ RUN ./configure \
     && cp sshd /usr/local/sbin/sshd-2222 \
     && chmod a+rx sshd /usr/local/sbin/sshd-2222
 
-RUN [ "/usr/local/sbin/sshd-22 -f /usr/local/etc/sshd_config-22 && /usr/local/sbin/sshd-2222 -f /usr/local/etc/sshd_config-2222" ]
-
 # Setup TCP Server
 WORKDIR /TcpServer
 COPY ./TcpServer .
-RUN pip install -r requirements.txt
 
-ENTRYPOINT [ "python" ]
-CMD [ "server.py" ]
+RUN pip install -r requirements.txt \
+    && chmod +x init.sh
+
+ENTRYPOINT [ "/bin/bash" ]
+CMD ["./init.sh"]
